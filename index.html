@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arq. Ricardo Compean | Arquitectura en Puebla</title>
+<title>Arq. Ricardo Compean | Arquitectura Premium</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -32,55 +32,78 @@ header {
     z-index: 1000;
 }
 
-header h1 {
-    font-size: 1.2rem;
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li {
+    position: relative;
 }
 
 nav a {
     color: #fff;
-    margin-left: 25px;
     text-decoration: none;
-    position: relative;
 }
 
-nav a::after {
-    content: '';
-    height: 2px;
-    width: 0;
-    background: #d4af37;
+/* SUBMENUS */
+.submenu, .submenu2 {
     position: absolute;
-    bottom: -5px;
-    left: 0;
-    transition: .3s;
+    background: #111;
+    display: none;
+    border-radius: 8px;
+    min-width: 180px;
 }
 
-nav a:hover::after {
-    width: 100%;
+.submenu {
+    top: 40px;
+    left: 0;
+}
+
+.submenu2 {
+    left: 100%;
+    top: 0;
+}
+
+.submenu li {
+    padding: 10px 20px;
+}
+
+.dropdown:hover .submenu {
+    display: block;
+}
+
+.sub-dropdown:hover .submenu2 {
+    display: block;
 }
 
 /* HERO */
 .hero {
     height: 100vh;
-    background: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e') center/cover no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
+    url('https://images.unsplash.com/photo-1503387762-592deb58ef4e') center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-.hero div {
-    background: rgba(0,0,0,0.6);
-    padding: 30px;
-    animation: fadeIn 2s ease;
-}
-
 .hero h2 {
-    font-size: 3rem;
-    margin-bottom: 15px;
+    font-size: 3.5rem;
 }
 
 .hero p {
-    font-size: 1.2rem;
+    margin: 20px 0;
+    opacity: 0.8;
+}
+
+.hero button {
+    background: #d4af37;
+    border: none;
+    padding: 12px 25px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 /* SECCIONES */
@@ -102,15 +125,14 @@ h2 {
 
 .card {
     background: #1a1a1a;
-    padding: 25px;
-    border-radius: 10px;
+    padding: 30px;
+    border-radius: 12px;
     transition: .4s;
-    border: 1px solid transparent;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    border: 1px solid #d4af37;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
 /* PORTAFOLIO */
@@ -130,6 +152,27 @@ h2 {
     transform: scale(1.05);
 }
 
+/* PROCESO */
+.process {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+/* TESTIMONIOS */
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 30px;
+}
+
+.testimonial {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+}
+
 /* CONTACTO */
 .contact form {
     max-width: 500px;
@@ -141,15 +184,20 @@ h2 {
 .contact input, .contact textarea {
     margin-bottom: 15px;
     padding: 12px;
-    border: none;
     border-radius: 5px;
+    border: none;
 }
 
-.contact button {
-    padding: 12px;
+/* CTA FIJO */
+.cta-fixed {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
     background: #d4af37;
-    border: none;
-    cursor: pointer;
+    padding: 15px 20px;
+    border-radius: 50px;
+    color: black;
+    font-weight: bold;
 }
 
 /* WHATSAPP */
@@ -162,7 +210,6 @@ h2 {
     border-radius: 50px;
     color: white;
     text-decoration: none;
-    font-weight: bold;
 }
 
 /* FOOTER */
@@ -171,49 +218,52 @@ footer {
     padding: 20px;
     background: #000;
 }
-
-/* ANIMACIÓN */
-@keyframes fadeIn {
-    from {opacity:0; transform: translateY(20px);}
-    to {opacity:1; transform: translateY(0);}
-}
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>Arq. Ricardo Compean Olivares</h1>
+    <h1>Arq. Ricardo Compean</h1>
     <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#portafolio">Proyectos</a>
-        <a href="#contacto">Contacto</a>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+
+            <li class="dropdown">
+                <a href="#servicios">Servicios</a>
+                <ul class="submenu">
+                    <li class="sub-dropdown">
+                        <a href="#">Diseño</a>
+                        <ul class="submenu2">
+                            <li><a href="#">Residencial</a></li>
+                            <li><a href="#">Comercial</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Render 3D</a></li>
+                    <li><a href="#">Supervisión</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#portafolio">Proyectos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
     </nav>
 </header>
 
 <section class="hero" id="inicio">
     <div>
-        <h2>Diseño Arquitectónico de Alto Nivel</h2>
-        <p>Proyectos exclusivos en Puebla, funcionales, modernos y listos para construirse</p>
+        <h2>Arquitectura que trasciende</h2>
+        <p>Diseño premium, funcional y listo para construirse</p>
+        <button>Ver proyectos</button>
     </div>
 </section>
 
 <section id="servicios">
     <h2>Servicios</h2>
     <div class="services">
-        <div class="card">
-            <h3>Diseño Arquitectónico</h3>
-            <p>Diseños personalizados que combinan estética, funcionalidad y valor.</p>
-        </div>
-        <div class="card">
-            <h3>Render 3D Profesional</h3>
-            <p>Visualiza tu proyecto antes de construir con imágenes realistas.</p>
-        </div>
-        <div class="card">
-            <h3>Supervisión de Obra</h3>
-            <p>Control total del proceso para garantizar calidad y cumplimiento.</p>
-        </div>
+        <div class="card"><h3>Diseño Arquitectónico</h3></div>
+        <div class="card"><h3>Render 3D</h3></div>
+        <div class="card"><h3>Supervisión</h3></div>
     </div>
 </section>
 
@@ -226,22 +276,40 @@ footer {
     </div>
 </section>
 
+<section>
+    <h2>Proceso de Trabajo</h2>
+    <div class="process">
+        <div>1. Análisis</div>
+        <div>2. Diseño</div>
+        <div>3. Visualización</div>
+        <div>4. Construcción</div>
+    </div>
+</section>
+
+<section>
+    <h2>Testimonios</h2>
+    <div class="testimonials">
+        <div class="testimonial">"Excelente diseño y atención"</div>
+        <div class="testimonial">"Mi casa quedó mejor de lo esperado"</div>
+    </div>
+</section>
+
 <section class="contact" id="contacto">
     <h2>Contacto</h2>
     <form>
         <input type="text" placeholder="Nombre" required>
-        <input type="email" placeholder="Correo electrónico" required>
-        <textarea placeholder="Cuéntame sobre tu proyecto..." rows="5"></textarea>
+        <input type="email" placeholder="Correo" required>
+        <textarea placeholder="Tu proyecto"></textarea>
         <button>Enviar</button>
     </form>
 </section>
 
-<a href="https://wa.me/522223701781?text=Hola%20Arq.%20Ricardo,%20me%20interesa%20un%20proyecto" class="whatsapp">
-    WhatsApp
-</a>
+<div class="cta-fixed">Cotizar Proyecto</div>
+
+<a href="https://wa.me/522223701781" class="whatsapp">WhatsApp</a>
 
 <footer>
-    <p>© 2026 Arq. Ricardo Compean Olivares | Puebla, Pue.</p>
+    <p>© 2026 Ricardo Compean</p>
 </footer>
 
 </body>
